@@ -8,6 +8,7 @@ Named functions are used on event handler
 */
 (function(){
 const formu = document.getElementById('form-container');
+const bills = [];
 
 function getData(event) {
     event.preventDefault();
@@ -32,6 +33,54 @@ function getData(event) {
         keys['amount'] = dataFormAmount;
         keys['date'] = dataFormDate;
         keys['type'] = dataFormType;
+        bills.push(keys);
+        createRow(keys);
+        formu.reset();
+    }
+    function createRow(data) {
+        console.log(data);
+        const containerBills = document.getElementById('container-new-bills');
+        const newRow = document.createElement('tr');
+        const newTD = document.createElement('td');
+        newTD.innerText = data.name;
+        newRow.appendChild(newTD);
+        const newTD1 = document.createElement('td');
+        newTD1.innerText = data.type;
+        newRow.appendChild(newTD1);
+        const newTD2 = document.createElement('td');
+        newTD2.innerText = data.date;
+        newRow.appendChild(newTD2);
+        const newTD3 = document.createElement('td');
+        newTD3.innerText = data.amount;
+        newRow.appendChild(newTD3);
+
+        containerBills.appendChild(newRow);
+        substraction();
+    }
+    function substraction() {
+        let substractionA = 0;
+        let substractionB = 0;
+        let substractionC = 0;
+
+        const containerTotalA = document.getElementById('totalA');
+        const containerTotalB = document.getElementById('totalB');
+        const containerTotalC = document.getElementById('totalC');
+
+        for (e of bills) {
+            if (e.type == 'A') {
+                substractionA = parseInt(e.amount) + substractionA;
+            } else if (e.type == 'B') {
+                substractionB = parseInt(e.amount) + substractionB;
+            } else if (e.type == 'C') {
+                substractionC = parseInt(e.amount) + substractionC;
+            }
+        }
+        containerTotalA.innerHTML = '';
+        containerTotalB.innerHTML = '';
+        containerTotalC.innerHTML = '';
+        containerTotalA.innerHTML = substractionA;
+        containerTotalB.innerHTML = substractionB;
+        containerTotalC.innerHTML = substractionC;
     }
 }
 formu.addEventListener('submit', getData);
