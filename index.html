@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bills</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <form action="" id="form-container" class="clearfix">
+    <h2>Add new bill</h2>
+    <div class="box">
+      <label for="name">name</label>
+      <input id="name" type="text" required>
+      <br>
+      <label for="amount">amount</label>
+      <input id="amount" type="number" min="0" required>
+    </div>
+    <div class="box">
+      <label for="date">date</label>
+      <input id="date" type="date" required>
+      <br>
+      <label for="type">type</label>
+      <select name="type" id="type">
+        <option value="">--Please choose an option--</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+      </select>
+    </div>
+    <br>
+    <button type="submit">Save</button>
+    <button type="reset">Reset</button>
+  </form>
+  <h2>All bills</h2>
+  <table id="bills">
+    <thead>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Amount</th>
+    </thead>
+    <tbody id="container">
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">Total</td>
+      </tr>
+      <tr>
+        <td colspan="3">A</td>
+        <td id="totalA"></td>
+      </tr>
+      <tr>
+        <td colspan="3">B</td>
+        <td id="totalB"></td>
+      </tr>
+      <tr>
+        <td colspan="3">C</td>
+        <td id="totalC"></td>
+      </tr>
+    </tfoot>
+  </table>
+  <script src="js/script.js"></script>
+</body>
+</html>
