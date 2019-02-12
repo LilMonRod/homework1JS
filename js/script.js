@@ -82,6 +82,34 @@ function getData(event) {
         containerTotalB.innerHTML = substractionB;
         containerTotalC.innerHTML = substractionC;
     }
+    
+    const columnName  = document.getElementById('column-name');
+    const columnType  = document.getElementById('column-type');
+    const columnAmount  = document.getElementById('column-amount');
+
+    columnName.addEventListener('click', function () {
+        bills.sort(dynamicSort("name"));
+    });
+    columnType.addEventListener('click', function () {
+        bills.sort(dynamicSort("type"));
+    });
+    columnAmount.addEventListener('click', function () {
+        bills.sort(dynamicSort("amount"));
+    });
+    
+    function dynamicSort(property) {
+        let sortOrder = 1;
+        if(property[0] === "-") {
+            sortOrder = -1;
+            property = property.substr(1);
+        }
+        return function (a,b) {
+            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+            console.log(sortOrder);            
+            return result * sortOrder;          
+        }
+    }
+
 }
 formu.addEventListener('submit', getData);
 })();
